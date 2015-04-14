@@ -2,5 +2,6 @@
     <string name="app_name">CSE477</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="CSE477">CSE477</string>
     <string name="action_settings">Settings</string>
 </resources>
