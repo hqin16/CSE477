@@ -1,6 +1,7 @@
 package com.example.henry.cse477;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +32,8 @@ public class LocationDisplay extends ActionBarActivity implements LocationListen
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         setContentView(R.layout.activity_location_display);
+        ActionBar actionBar = getSupportActionBar(); // || getActionBar();
+        actionBar.setIcon(getResources().getDrawable(R.drawable.uwlogo));
         latituteField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
 

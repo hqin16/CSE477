@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#694489"
+    android:gravity="top|center_horizontal"
+    android:paddingTop="45dp">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dip"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
         <TextView
             android:id="@+id/TextView01"
@@ -20,23 +25,26 @@
             android:layout_marginLeft="10dip"
             android:layout_marginRight="5dip"
             android:text="Latitude: "
-            android:textSize="20dip" >
+            android:textSize="20dip"
+            android:textColor="#FFFFFF">
         </TextView>
+
 
         <TextView
             android:id="@+id/TextView02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="unknown"
-            android:textSize="20dip" >
+            android:textSize="20dip"
+            android:textColor="#FFFFFF">
         </TextView>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
         <TextView
             android:id="@+id/TextView03"
             android:layout_width="wrap_content"
@@ -44,7 +52,8 @@
             android:layout_marginLeft="10dip"
             android:layout_marginRight="5dip"
             android:text="Longitute: "
-            android:textSize="20dip" >
+            android:textSize="20dip"
+            android:textColor="#FFFFFF">
         </TextView>
 
         <TextView
@@ -52,7 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="unknown"
-            android:textSize="20dip" >
+            android:textSize="20dip"
+            android:textColor="#FFFFFF">
         </TextView>
     </LinearLayout>
 

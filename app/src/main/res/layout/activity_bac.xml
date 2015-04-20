@@ -3,24 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    android:background="#694489"
+    android:gravity="top|center">
 
-    <EditText android:id="@+id/edit_message"
-    android:layout_weight="1"
-    android:layout_width="0dp"
-    android:layout_height="100dp"
-    android:hint="@string/CSE477" />
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="top|center_horizontal">
+    <ImageView
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:src="@drawable/uwlogo"
+        android:orientation="horizontal"
+        android:gravity="top"
+        android:paddingTop="45dp"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
     <Button
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:background = "@drawable/roundbutton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:text="Locate"
-        android:onClick="Located"
-        android:layout_gravity="center_vertical" />
+        android:textSize="25dp"
+        android:onClick="Located"/>
+    </LinearLayout>
 
-    <Button
-    android:layout_width="wrap_content"
-    android:layout_height="100dp"
-    android:text="@string/Text"
-    android:onClick="sendMessage"/>
 </LinearLayout>
