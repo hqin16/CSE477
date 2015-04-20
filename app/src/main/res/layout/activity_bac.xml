@@ -33,6 +33,7 @@
         android:layout_height="200dp"
         android:text="Locate"
         android:textSize="25dp"
+        android:textStyle="bold"
         android:onClick="Located"/>
     </LinearLayout>
 
