@@ -18,11 +18,25 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class LocationDisplay extends ActionBarActivity implements LocationListener {
-    private TextView latituteField;
+    private static final String TAG = "LocationAddress";
+
+    private TextView latitudeField;
     private TextView longitudeField;
+    private TextView addressField;
     private LocationManager locationManager;
     private String provider;
+
 
 
     /** Called when the activity is first created. */
@@ -34,8 +48,9 @@ public class LocationDisplay extends ActionBarActivity implements LocationListen
         setContentView(R.layout.activity_location_display);
         ActionBar actionBar = getSupportActionBar(); // || getActionBar();
         actionBar.setIcon(getResources().getDrawable(R.drawable.uwlogo));
-        latituteField = (TextView) findViewById(R.id.TextView02);
+        latitudeField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
+        addressField = (TextView) findViewById(R.id.TextView06);
 
         // Get the location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -45,12 +60,14 @@ public class LocationDisplay extends ActionBarActivity implements LocationListen
         provider = locationManager.getBestProvider(criteria, false);
         Location location = locationManager.getLastKnownLocation(provider);
 
+
+
         // Initialize the location fields
         if (location != null) {
             System.out.println("Provider " + provider + " has been selected.");
             onLocationChanged(location);
         } else {
-            latituteField.setText("Location not available");
+            latitudeField.setText("Location not available");
             longitudeField.setText("Location not available");
         }
     }
@@ -73,8 +90,10 @@ public class LocationDisplay extends ActionBarActivity implements LocationListen
     public void onLocationChanged(Location location) {
         double lat = (location.getLatitude());
         double lng = (location.getLongitude());
-        latituteField.setText(String.valueOf(lat));
-        longitudeField.setText(String.valueOf(lng));
+        String address = getAddressFromLocation(location.getLatitude(), location.getLongitude(), getApplicationContext());
+        latitudeField.setText(lat + "");
+        longitudeField.setText(lng + "");
+        addressField.setText(address);
     }
 
     @Override
@@ -110,5 +129,45 @@ public class LocationDisplay extends ActionBarActivity implements LocationListen
 
         return super.onOptionsItemSelected(item);
     }
+
+    public String getAddressFromLocation(double latitude, double longitude,
+                                         Context context){
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        String result = null;
+        try {
+            List<Address> addressList = geocoder.getFromLocation(
+                    latitude, longitude, 1);
+            if (addressList != null && addressList.size() > 0) {
+                Address address = addressList.get(0);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                    sb.append(address.getAddressLine(i)).append("\n");
+                }
+                result = sb.toString();
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "Unable connect to Geocoder", e);
+        }
+        return result;
+    }
+
+    public double getLocationFromAddress(Context context, String addresses) {
+        Geocoder get = new Geocoder(context);
+        List<Address> address;
+        double latitude = 0;
+        double longitude = 0;
+        try{
+            address = get.getFromLocationName(addresses, 1);
+            if(address.size() > 0) {
+                latitude = address.get(0).getLatitude();
+                longitude = address.get(0).getLongitude();
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "Unable connect to Geocoder", e);
+        }
+        return latitude;
+    }
 }
+
+
 

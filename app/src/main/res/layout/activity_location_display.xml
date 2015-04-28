@@ -66,5 +66,31 @@
         </TextView>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/TextView05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="5dip"
+            android:text="Address: "
+            android:textSize="20dip"
+            android:textColor="#FFFFFF">
+        </TextView>
+
+        <TextView
+            android:id="@+id/TextView06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="unknown"
+            android:textSize="20dip"
+            android:textColor="#FFFFFF">
+        </TextView>
+    </LinearLayout>
+
 </LinearLayout> 
 
