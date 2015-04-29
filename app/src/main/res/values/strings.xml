@@ -52,4 +52,6 @@
     <string name="oops">Oops</string>
     <string name="title_activity_setting">setting</string>
     <string name="title_activity_address">address</string>
+    <string name="title_activity_set_time">setTime</string>
+    <string name="title_activity_set_contact">set_contact</string>
 </resources>

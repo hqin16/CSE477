@@ -55,6 +55,14 @@
             android:name=".Me"
             android:label="@string/title_activity_me" >
         </activity>
+        <activity
+            android:name=".setTime"
+            android:label="@string/title_activity_set_time" >
+        </activity>
+        <activity
+            android:name=".set_contact"
+            android:label="@string/title_activity_set_contact" >
+        </activity>
     </application>
 
 </manifest>
