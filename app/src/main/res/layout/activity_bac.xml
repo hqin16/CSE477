@@ -1,40 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#694489"
-    android:gravity="top|center">
+    android:orientation="horizontal"
+    android:background="#694489">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="top|center_horizontal">
-    <ImageView
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:src="@drawable/uwlogo"
-        android:orientation="horizontal"
-        android:gravity="top"
-        android:paddingTop="45dp"/>
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_gravity="bottom">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/button"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:gravity="top"
+                android:onClick="Call"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"/>
+
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/uwlogo"
+
+                android:gravity="top"
+                android:onClick="Call"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/button"
+                android:layout_toRightOf="@+id/button" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/uwlogo"
+                android:gravity="top"
+                android:onClick="Call"
+                android:layout_alignTop="@+id/button2"
+                android:layout_toEndOf="@+id/button2"
+                android:layout_toRightOf="@+id/button2"/>
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/uwlogo"
+                android:gravity="top"
+                android:onClick="Call"
+                android:layout_alignTop="@+id/button4"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@drawable/roundbutton"
+                android:text="Locate"
+                android:textSize="30dp"
+                android:textStyle ="bold"
+                android:id="@+id/button3"
+                android:layout_gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:onClick="Located"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/uwlogo"
+                android:background="@drawable/uwlogo"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UW: B.A.C"
+                android:id="@+id/TopLog"
+                android:gravity="center"
+                android:textSize="50dp"
+                android:textStyle ="bold"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/uwlogo"
+                android:layout_alignRight="@+id/button5"
+                android:layout_alignEnd="@+id/button5"
+                android:layout_alignBottom="@+id/uwlogo" />
+
+        </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center">
-    <Button
-        android:background = "@drawable/roundbutton"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:text="Locate"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:onClick="Located"/>
-    </LinearLayout>
+
 
 </LinearLayout>

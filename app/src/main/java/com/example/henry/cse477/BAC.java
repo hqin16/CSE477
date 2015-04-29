@@ -1,6 +1,8 @@
 package com.example.henry.cse477;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,16 +12,15 @@ import android.view.View;
 import android.widget.EditText;
 
 
-public class BAC extends ActionBarActivity {
+public class BAC extends Activity {
 
     public final static String EXTRA_MESSAGE = "com.example.henry.MESSAGE";
+    private String tel= "4256478712";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bac);
-        ActionBar actionBar = getSupportActionBar(); // || getActionBar();
-        actionBar.setIcon(getResources().getDrawable(R.drawable.uwlogo));
     }
 
 
@@ -58,6 +59,13 @@ public class BAC extends ActionBarActivity {
     public void Located(View view){
         Intent myIntent = new Intent(BAC.this, LocationDisplay.class);
         BAC.this.startActivity(myIntent);
+    }
+
+    public void Call(View view){
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + tel));
+        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(callIntent);
     }
 
 }

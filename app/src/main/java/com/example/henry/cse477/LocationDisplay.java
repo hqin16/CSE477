@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class LocationDisplay extends ActionBarActivity implements LocationListener {
+public class LocationDisplay extends Activity implements LocationListener {
     private static final String TAG = "LocationAddress";
 
     private TextView latitudeField;
@@ -46,8 +46,6 @@ public class LocationDisplay extends ActionBarActivity implements LocationListen
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         setContentView(R.layout.activity_location_display);
-        ActionBar actionBar = getSupportActionBar(); // || getActionBar();
-        actionBar.setIcon(getResources().getDrawable(R.drawable.uwlogo));
         latitudeField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
         addressField = (TextView) findViewById(R.id.TextView06);
