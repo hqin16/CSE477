@@ -11,11 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="bottom"
+        android:gravity="bottom|center_vertical"
         android:layout_gravity="bottom">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
             <Button
                 android:id="@+id/button"
                 android:layout_width="90dp"
@@ -24,8 +28,8 @@
                 android:gravity="top"
                 android:onClick="Call"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"/>
+                android:layout_toLeftOf="@+id/button3"
+                android:layout_toStartOf="@+id/button3" />
 
 
             <Button
@@ -58,9 +62,9 @@
                 android:src="@drawable/uwlogo"
                 android:gravity="top"
                 android:onClick="Call"
-                android:layout_alignTop="@+id/button4"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/button4"
+                android:layout_toEndOf="@+id/button4" />
 
             <Button
                 android:layout_width="200dp"
@@ -74,7 +78,7 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:onClick="Located"/>
-
+        </RelativeLayout>
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
@@ -85,17 +89,15 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="UW: B.A.C"
                 android:id="@+id/TopLog"
                 android:gravity="center"
-                android:textSize="50dp"
+                android:textSize="50sp"
                 android:textStyle ="bold"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/uwlogo"
-                android:layout_alignRight="@+id/button5"
-                android:layout_alignEnd="@+id/button5"
                 android:layout_alignBottom="@+id/uwlogo" />
 
         </RelativeLayout>
