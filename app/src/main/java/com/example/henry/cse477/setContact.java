@@ -1,24 +1,26 @@
 package com.example.henry.cse477;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
-public class address extends ActionBarActivity {
+public class setContact extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address);
+        setContentView(R.layout.activity_set_contact);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_address, menu);
+        getMenuInflater().inflate(R.menu.menu_set_contact, menu);
         return true;
     }
 
@@ -35,5 +37,10 @@ public class address extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void save(View view){
+        Intent myIntent = new Intent(setContact.this, mySettings.class);
+        setContact.this.startActivity(myIntent);
     }
 }

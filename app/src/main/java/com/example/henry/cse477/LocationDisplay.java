@@ -1,5 +1,8 @@
 package com.example.henry.cse477;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +18,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +53,7 @@ public class LocationDisplay extends Activity implements LocationListener {
         latitudeField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
         addressField = (TextView) findViewById(R.id.TextView06);
-
+        createNotification();
         // Get the location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Define the criteria how to select the locatioin provider -> use
@@ -57,8 +61,6 @@ public class LocationDisplay extends Activity implements LocationListener {
         Criteria criteria = new Criteria();
         provider = locationManager.getBestProvider(criteria, false);
         Location location = locationManager.getLastKnownLocation(provider);
-
-
 
         // Initialize the location fields
         if (location != null) {
@@ -164,6 +166,29 @@ public class LocationDisplay extends Activity implements LocationListener {
             Log.e(TAG, "Unable connect to Geocoder", e);
         }
         return latitude;
+    }
+
+    public void createNotification() {
+        // Prepare intent which is triggered if the
+        // notification is selected
+        Intent intent = new Intent(this, LocationDisplay.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        // Build notification
+        // Actions are just fake
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle("New mail from " + "test@gmail.com")
+                .setContentText("Subject").setSmallIcon(R.drawable.uwlogo)
+                .setContentIntent(pIntent).build();
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // hide the notification after its selected
+        noti.vibrate = new long[]{100, 200, 100, 500};
+        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        notificationManager.notify(0, noti);
+
+
+
     }
 }
 

@@ -1,12 +1,14 @@
 package com.example.henry.cse477;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
-public class Me extends ActionBarActivity {
+public class Me extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +37,20 @@ public class Me extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void connect(View view){
+        Intent myIntent = new Intent(Me.this, BAC.class);
+        Me.this.startActivity(myIntent);
+}
+
+    public void progressReport(View view){
+        Intent myIntent = new Intent(Me.this, progress.class);
+        Me.this.startActivity(myIntent);
+    }
+
+    public void settings(View view){
+        Intent myIntent = new Intent(Me.this, mySettings.class);
+        Me.this.startActivity(myIntent);
     }
 }

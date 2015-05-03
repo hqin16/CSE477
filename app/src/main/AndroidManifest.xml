@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -60,8 +61,24 @@
             android:label="@string/title_activity_set_time" >
         </activity>
         <activity
-            android:name=".set_contact"
+            android:name=".setContact"
             android:label="@string/title_activity_set_contact" >
+        </activity>
+        <activity
+            android:name=".mySettings"
+            android:label="@string/title_activity_my_settings"
+            android:parentActivityName=".BAC" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.henry.cse477.BAC" />
+        </activity>
+        <activity
+            android:name=".myAddress"
+            android:label="@string/title_activity_my_address"
+            android:parentActivityName=".BAC" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.henry.cse477.BAC" />
         </activity>
     </application>
 

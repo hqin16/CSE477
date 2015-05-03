@@ -2,27 +2,26 @@ package com.example.henry.cse477;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
-public class progress extends Activity {
-    private String tel= "4256478712";
+public class mySettings extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_progress);
+        setContentView(R.layout.activity_my_settings);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_progress, menu);
+        getMenuInflater().inflate(R.menu.menu_my_settings, menu);
         return true;
     }
 
@@ -42,24 +41,32 @@ public class progress extends Activity {
     }
 
     public void connect(View view){
-        Intent myIntent = new Intent(progress.this, BAC.class);
-        progress.this.startActivity(myIntent);
+        Intent myIntent = new Intent(mySettings.this, BAC.class);
+        mySettings.this.startActivity(myIntent);
     }
 
     public void me(View view){
-        Intent myIntent = new Intent(progress.this, Me.class);
-        progress.this.startActivity(myIntent);
+        Intent myIntent = new Intent(mySettings.this, Me.class);
+        mySettings.this.startActivity(myIntent);
     }
 
-    public void settings(View view){
-        Intent myIntent = new Intent(progress.this, mySettings.class);
-        progress.this.startActivity(myIntent);
+    public void progressReport(View view){
+        Intent myIntent = new Intent(mySettings.this, progress.class);
+        mySettings.this.startActivity(myIntent);
     }
 
-    public void Call(View view){
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:" + tel));
-        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(callIntent);
+    public void setTime(View view){
+        Intent myIntent = new Intent(mySettings.this, setTime.class);
+        mySettings.this.startActivity(myIntent);
+    }
+
+    public void setContact(View view){
+        Intent myIntent = new Intent(mySettings.this,setContact.class);
+        mySettings.this.startActivity(myIntent);
+    }
+
+    public void address(View view){
+        Intent myIntent = new Intent(mySettings.this, myAddress.class);
+        mySettings.this.startActivity(myIntent);
     }
 }

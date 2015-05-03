@@ -1,12 +1,14 @@
 package com.example.henry.cse477;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
-public class setTime extends ActionBarActivity {
+public class setTime extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +37,10 @@ public class setTime extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void save(View view){
+        Intent myIntent = new Intent(setTime.this, mySettings.class);
+        setTime.this.startActivity(myIntent);
     }
 }
