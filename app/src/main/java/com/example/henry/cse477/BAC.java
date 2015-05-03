@@ -4,43 +4,68 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 
-public class BAC extends Activity {
+public class BAC extends Activity implements LocationListener {
 
+
+    private static final String TAG = "LocationAddress";
     public final static String EXTRA_MESSAGE = "com.example.henry.MESSAGE";
+    private LocationManager locationManager;
+    private String provider;
+    private double lat = 0;
+    private double lng = 0;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
 
         @Override
         public void run() {
-            createNotification();
+            if (lat == 49 && lng == 100) {
+                createNotification();
+            }
             timerHandler.postDelayed(this, 10000);
         }
     };
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // Define the criteria how to select the locatioin provider -> use
+        // default
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        Location location = locationManager.getLastKnownLocation(provider);
+        if(location != null) {
+            onLocationChanged(location);
+        }
         timerHandler.postDelayed(timerRunnable, 0);
         setContentView(R.layout.activity_bac);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_bac, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -57,15 +82,7 @@ public class BAC extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-   /*
-    public void sendMessage(View view) {
-      Intent intent = new Intent(this, DisplayMessageActivity.class);
-      EditText editText = (EditText) findViewById(R.id.edit_message);
-      String message = editText.getText().toString();
-      intent.putExtra(EXTRA_MESSAGE, message);
-      startActivity(intent);
-    }
-    */public void createNotification() {
+    public void createNotification() {
        // Prepare intent which is triggered if the
        // notification is selected
        Intent intent = new Intent(this, LocationDisplay.class);
@@ -87,6 +104,45 @@ public class BAC extends Activity {
 
 
    }
+
+    /* Request updates at startup */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        locationManager.requestLocationUpdates(provider, 400, 1, this);
+    }
+
+    /* Remove the locationlistener updates when Activity is paused */
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        lat = (location.getLatitude());
+        lng = (location.getLongitude());
+        //String address = getAddressFromLocation(location.getLatitude(), location.getLongitude(), getApplicationContext());
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Toast.makeText(this, "Enabled new provider " + provider,
+                Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Toast.makeText(this, "Disabled provider " + provider,
+                Toast.LENGTH_SHORT).show();
+    }
 
     public void Located(View view){
         Intent myIntent = new Intent(BAC.this, LocationDisplay.class);

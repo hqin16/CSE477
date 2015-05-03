@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="#694489">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -25,7 +25,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Set Time:"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textSize="28sp"
                     android:textStyle ="bold"
                     android:id="@+id/textView6"
@@ -34,27 +34,29 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
 
-                <Button
+                <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Save"
+                    android:background="@drawable/submitbutton"
                     android:onClick="save"
                     android:id="@+id/button11"
+                    android:layout_marginTop="68dp"
                     android:layout_below="@+id/textView6"
-                    android:layout_alignLeft="@+id/textView6"
-                    android:layout_alignStart="@+id/textView6"
-                    android:layout_marginTop="76dp"
-                    android:layout_alignRight="@+id/button5"
-                    android:layout_alignEnd="@+id/button5" />
+                    android:layout_toLeftOf="@+id/button13"
+                    android:layout_toStartOf="@+id/button13" />
 
-                <Button
+                <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cancel"
+                    android:background="@drawable/cancelbutton"
                     android:id="@+id/button13"
                     android:layout_alignTop="@+id/button11"
-                    android:layout_toRightOf="@+id/button11"
-                    android:layout_toEndOf="@+id/button11" />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginEnd="50dp" />
 
 
             </RelativeLayout>
@@ -72,6 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="UW: B.A.C"
+                android:textColor="#000000"
                 android:id="@+id/TopLog"
                 android:gravity="center"
                 android:textSize="50sp"

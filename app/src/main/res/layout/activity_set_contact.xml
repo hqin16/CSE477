@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="#694489">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Number:"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textSize="28sp"
                     android:textStyle ="bold"
                     android:id="@+id/textView6"
@@ -33,20 +33,22 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginBottom="81dp" />
 
-                <Button
+                <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Save"
+                    android:background="@drawable/submitbutton"
                     android:onClick="save"
                     android:id="@+id/button11"
                     android:layout_alignTop="@+id/button13"
                     android:layout_toLeftOf="@+id/button13"
                     android:layout_toStartOf="@+id/button13" />
 
-                <Button
+                <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cancel"
+                    android:background="@drawable/cancelbutton"
                     android:id="@+id/button13"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@+id/textView6"
@@ -57,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Choose Contact:"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textSize="28sp"
                     android:textStyle ="bold"
                     android:id="@+id/textView7"
@@ -74,6 +76,7 @@
                     android:gravity="center"
                     android:textSize="50sp"
                     android:textStyle ="bold"
+                    android:textColor="#000000"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/uwlogo"
                     android:layout_alignBottom="@+id/uwlogo" />

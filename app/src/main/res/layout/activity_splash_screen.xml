@@ -3,13 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCCC00">
+    android:background="#FFFFFF">
 
 
 
 
-    <ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView android:id="@+id/splashscreen"
+        android:layout_width="334dp"
+        android:layout_height="427dp"
         android:src="@drawable/uwlogo"
         android:layout_gravity="center"
         android:paddingTop="100dp"/>
@@ -19,6 +20,7 @@
         android:gravity="bottom|center"
         android:paddingBottom="100dp"
         android:textSize="30dp"
+        android:textColor="#000000"
         android:textStyle="bold"
         android:text="CSE 477 B.A.C"/>
 

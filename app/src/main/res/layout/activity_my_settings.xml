@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="#694489">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -23,10 +23,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true">
-                <Button
+                <ImageButton
                     android:id="@+id/button"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
+                    android:background="@drawable/connect"
                     android:text="Connect"
                     android:gravity="center"
                     android:onClick="connect"
@@ -35,11 +36,11 @@
                     android:layout_alignParentStart="true" />
 
 
-                <Button
+                <ImageButton
                     android:id="@+id/button2"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:src="@drawable/uwlogo"
+                    android:background="@drawable/pr"
                     android:text="Progress Report"
                     android:textSize="12.5sp"
                     android:gravity="center"
@@ -48,11 +49,11 @@
                     android:layout_toEndOf="@+id/button"
                     android:layout_toRightOf="@+id/button" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/button4"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:src="@drawable/uwlogo"
+                    android:background="@drawable/me"
                     android:text="ME"
                     android:gravity="center"
                     android:onClick="me"
@@ -60,11 +61,11 @@
                     android:layout_toEndOf="@+id/button2"
                     android:layout_toRightOf="@+id/button2"/>
 
-                <Button
+                <ImageButton
                     android:id="@+id/button5"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:src="@drawable/uwlogo"
+                    android:background="@drawable/setting"
                     android:text="Settings"
                     android:gravity="center"
 
@@ -124,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="UW: B.A.C"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:id="@+id/TopLog"
                 android:gravity="center"
                 android:textSize="50sp"
