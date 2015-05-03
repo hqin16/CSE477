@@ -30,6 +30,7 @@ import java.util.Map;
 public class BAC extends Activity implements LocationListener {
 
     public static final String PREFS_NAME = "Latitude";
+    public static final String PREFS_NAME1 = "Longitude";
 
     private static final String TAG = "LocationAddress";
     public final static String EXTRA_MESSAGE = "com.example.henry.MESSAGE";
@@ -44,14 +45,32 @@ public class BAC extends Activity implements LocationListener {
         @Override
         public void run() {
             SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences settings1 = getSharedPreferences(PREFS_NAME1, 0);
+            boolean check = false;
+            String latState = "lat";
+            String longState = "long";
             Map<String,?> keys = settings.getAll();
             for(Map.Entry<String,?> entry : keys.entrySet()) {
                 String temp = entry.getValue().toString();
                 int latitude = Integer.parseInt(temp);
-                if (lat == (double)latitude && lng == 100) {
-                    createNotification();
+                int test = (int) lat;
+                if (test == latitude) {
+                    check = true;
+
                 }
             }
+
+            Map<String,?> keys1 = settings1.getAll();
+            for(Map.Entry<String,?> entry : keys1.entrySet()) {
+                String temp = entry.getValue().toString();
+                int longitude= Integer.parseInt(temp);
+                int test = (int) lng;
+                if (test == longitude && check) {
+                    createNotification();
+
+                }
+            }
+
             timerHandler.postDelayed(this, 10000);
         }
     };
