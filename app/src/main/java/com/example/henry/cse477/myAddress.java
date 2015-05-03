@@ -2,14 +2,18 @@ package com.example.henry.cse477;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class myAddress extends Activity {
+
+    public static final String PREFS_NAME = "Latitude";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,14 @@ public class myAddress extends Activity {
     }
 
     public void save(View view){
+        EditText editText = (EditText) findViewById(R.id.editText);
+        String latitude = editText.getText().toString();
+        int lat = Integer.parseInt(latitude);
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt(latitude, lat);
+        // Commit the edits!
+        editor.commit();
         Intent myIntent = new Intent(myAddress.this, mySettings.class);
         myAddress.this.startActivity(myIntent);
     }

@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -23,25 +24,33 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class BAC extends Activity implements LocationListener {
 
+    public static final String PREFS_NAME = "Latitude";
 
     private static final String TAG = "LocationAddress";
     public final static String EXTRA_MESSAGE = "com.example.henry.MESSAGE";
     private LocationManager locationManager;
     private String provider;
-    private double lat = 0;
-    private double lng = 0;
+    private double lat;
+    private double lng;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
 
         @Override
         public void run() {
-            if (lat == 49 && lng == 100) {
-                createNotification();
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            Map<String,?> keys = settings.getAll();
+            for(Map.Entry<String,?> entry : keys.entrySet()) {
+                String temp = entry.getValue().toString();
+                int latitude = Integer.parseInt(temp);
+                if (lat == (double)latitude && lng == 100) {
+                    createNotification();
+                }
             }
             timerHandler.postDelayed(this, 10000);
         }
