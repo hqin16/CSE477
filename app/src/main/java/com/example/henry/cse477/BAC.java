@@ -118,8 +118,8 @@ public class BAC extends Activity implements LocationListener {
        // Build notification
        // Actions are just fake
        Notification noti = new Notification.Builder(this)
-               .setContentTitle("New mail from " + "test@gmail.com")
-               .setContentText("Subject").setSmallIcon(R.drawable.uwlogo)
+               .setContentTitle("ALERT")
+               .setContentText("TIME TO TEST").setSmallIcon(R.drawable.uwlogo)
                .setContentIntent(pIntent).build();
 
        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
