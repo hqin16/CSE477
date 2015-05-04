@@ -47,7 +47,7 @@ public class BAC extends Activity implements LocationListener {
             SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
             SharedPreferences settings1 = getSharedPreferences(PREFS_NAME1, 0);
             boolean check = false;
-            String latState = "lat";
+            String lattate = "lat";
             String longState = "long";
             Map<String,?> keys = settings.getAll();
             for(Map.Entry<String,?> entry : keys.entrySet()) {
