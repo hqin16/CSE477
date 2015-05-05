@@ -90,6 +90,16 @@
                     android:layout_alignLeft="@+id/textView6"
                     android:layout_alignStart="@+id/textView6" />
 
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:id="@+id/editText5"
+                    android:layout_above="@+id/button11"
+                    android:layout_alignLeft="@+id/button11"
+                    android:layout_alignStart="@+id/button11"
+                    android:layout_alignRight="@+id/button13"
+                    android:layout_alignEnd="@+id/button13" />
+
 
             </RelativeLayout>
 

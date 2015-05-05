@@ -2,13 +2,17 @@ package com.example.henry.cse477;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class setContact extends Activity {
+
+    public static final String PREFS_NAME = "Contact Info";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,13 @@ public class setContact extends Activity {
     }
 
     public void save(View view){
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        EditText contact = (EditText) findViewById(R.id.editText5);
+        String contacts = contact.getText().toString().trim();
         Intent myIntent = new Intent(setContact.this, mySettings.class);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("Contact", contacts);
+        editor.commit();
         setContact.this.startActivity(myIntent);
     }
 }

@@ -46,9 +46,12 @@ public class Initializations extends ActionBarActivity {
     public void submit(View view){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         EditText editText = (EditText) findViewById(R.id.editText2);
+        EditText contact = (EditText) findViewById(R.id.editText4);
+        String contacts = contact.getText().toString();
         String name = editText.getText().toString();
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("Name", name);
+        editor.putString("Contact", contacts);
         editor.commit();
         Intent myIntent = new Intent(Initializations.this, BAC.class);
         Initializations.this.startActivity(myIntent);

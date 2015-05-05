@@ -2,6 +2,7 @@ package com.example.henry.cse477;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,7 +11,7 @@ import android.view.View;
 
 
 public class progress extends Activity {
-    private String tel= "4256478712";
+    public static final String PREFS_NAME = "Contact Info";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,8 @@ public class progress extends Activity {
     }
 
     public void Call(View view){
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        String tel = settings.getString("Contact", null);
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + tel));
         callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
