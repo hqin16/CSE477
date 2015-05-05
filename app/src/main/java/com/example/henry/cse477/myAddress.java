@@ -59,8 +59,8 @@ public class myAddress extends Activity {
         EditText editText = (EditText) findViewById(R.id.editText);
         String address = editText.getText().toString();
 
-        int latitude = (int) getLatitudeFromAddress(getApplicationContext(), address);
-        int longitude = (int) getLongitudeFromAddress(getApplicationContext(), address);
+        double latitude =  getLatitudeFromAddress(getApplicationContext(), address);
+        double longitude = getLongitudeFromAddress(getApplicationContext(), address);
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences settings1 = getSharedPreferences(PREFS_NAME1, 0);
@@ -72,11 +72,11 @@ public class myAddress extends Activity {
         state++;
         String set = Integer.toString(state);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt(set, latitude);
+        editor.putString(set, "" + latitude);
         // Commit the edits!
         editor.commit();
         SharedPreferences.Editor editor1 = settings1.edit();
-        editor1.putInt(set, longitude);
+        editor1.putString(set, "" + longitude);
         editor1.commit();
         Intent myIntent = new Intent(myAddress.this, mySettings.class);
         myAddress.this.startActivity(myIntent);

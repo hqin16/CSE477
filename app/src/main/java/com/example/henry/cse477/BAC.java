@@ -52,22 +52,18 @@ public class BAC extends Activity implements LocationListener {
             Map<String,?> keys = settings.getAll();
             for(Map.Entry<String,?> entry : keys.entrySet()) {
                 String temp = entry.getValue().toString();
-                int latitude = Integer.parseInt(temp);
-                int test = (int) lat;
-                if (test == latitude) {
+                double latitude = Double.parseDouble(temp);
+                if (lat < latitude) {
                     check = true;
-
                 }
             }
 
             Map<String,?> keys1 = settings1.getAll();
             for(Map.Entry<String,?> entry : keys1.entrySet()) {
                 String temp = entry.getValue().toString();
-                int longitude= Integer.parseInt(temp);
-                int test = (int) lng;
-                if (test == longitude && check) {
+                double longitude = Double.parseDouble(temp);
+                if (lng < longitude && check) {
                     createNotification();
-
                 }
             }
 
