@@ -56,4 +56,5 @@
     <string name="title_activity_set_contact">set_contact</string>
     <string name="title_activity_my_settings">mySettings</string>
     <string name="title_activity_my_address">myAddress</string>
+    <string name="title_activity_initializations">Initializations</string>
 </resources>

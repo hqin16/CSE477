@@ -31,7 +31,7 @@ public class SplashScreen extends Activity {
                 if(value == null){
                     editor.putString("key", "ok");
                     editor.commit();
-                    startActivity(new Intent(SplashScreen.this, Me.class));
+                    startActivity(new Intent(SplashScreen.this, Initializations.class));
                     finish();
                 } else {
                     startActivity(new Intent(SplashScreen.this, BAC.class));

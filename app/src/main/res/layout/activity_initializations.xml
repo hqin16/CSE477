@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="bottom|center_vertical"
+        android:layout_gravity="bottom">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText2"
+                    android:layout_marginTop="114dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/editText3"
+                    android:layout_toEndOf="@+id/editText3" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText3"
+                    android:textColor="#000000"
+                    android:text="Name:"
+                    android:textSize="30dp"
+                    android:layout_alignTop="@+id/editText2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:onClick="submit"
+                    android:id="@+id/button12"
+                    android:layout_marginTop="52dp"
+                    android:layout_below="@+id/editText2"
+                    android:layout_alignRight="@+id/editText2"
+                    android:layout_alignEnd="@+id/editText2" />
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/uwlogo"
+                android:background="@drawable/uwlogo"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UW: B.A.C"
+                android:textColor="#000000"
+                android:id="@+id/TopLog"
+                android:gravity="center"
+                android:textSize="50sp"
+                android:textStyle ="bold"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/uwlogo"
+                android:layout_alignBottom="@+id/uwlogo" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

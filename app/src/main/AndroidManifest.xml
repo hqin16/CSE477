@@ -80,6 +80,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.henry.cse477.BAC" />
         </activity>
+        <activity
+            android:name=".Initializations"
+            android:label="@string/title_activity_initializations"
+            android:parentActivityName=".BAC" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.henry.cse477.BAC" />
+        </activity>
     </application>
 
 </manifest>
