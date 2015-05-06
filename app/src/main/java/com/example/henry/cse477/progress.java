@@ -62,7 +62,6 @@ public class progress extends Activity {
         String tel = settings.getString("Contact", null);
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + tel));
-        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(callIntent);
     }
 }
