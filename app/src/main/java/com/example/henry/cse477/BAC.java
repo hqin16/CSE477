@@ -1,10 +1,15 @@
 package com.example.henry.cse477;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Address;
@@ -22,9 +27,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 
 public class BAC extends Activity implements LocationListener {
@@ -38,6 +46,35 @@ public class BAC extends Activity implements LocationListener {
     private String provider;
     private double lat;
     private double lng;
+
+    private static final int REQUEST_ENABLE_BT = 1;
+    private BluetoothAdapter btAdapter = null;
+    private BluetoothSocket btSocket = null;
+    private InputStream inputStream = null;
+
+    // Well known SPP UUID
+    private static final UUID MY_UUID =
+            UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
+    // Insert your server's MAC address
+    private static String address = "00:06:66:6D:96:96";
+
+    private void CheckBTState() {
+        // Check for Bluetooth support and then check to make sure it is turned on
+
+
+            if (btAdapter.isEnabled()) {
+
+            } else {
+                //Prompt user to turn on Bluetooth
+                Intent enableBtIntent = new Intent(btAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            }
+
+    }
+
+
+
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -71,12 +108,70 @@ public class BAC extends Activity implements LocationListener {
         }
     };
 
+    Handler bluetoothHandler = new Handler();
+    Runnable bluetoothRunnable = new Runnable() {
 
+        @Override
+        public void run() {
+            BluetoothDevice device = btAdapter.getRemoteDevice(address);
+
+            // Two things are needed to make a connection:
+            //   A MAC address, which we got above.
+            //   A Service ID or UUID.  In this case we are using the
+            //     UUID for SPP.
+            try {
+                btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);
+            } catch (IOException e) {
+                Log.e(TAG, "Unable connect", e);
+            }
+            btAdapter.cancelDiscovery();
+            // Establish the connection.  This will block until it connects.
+            try {
+                btSocket.connect();
+
+            } catch (IOException e) {
+                try {
+                    btSocket.close();
+                } catch (IOException e2) {
+                    Log.e(TAG, "Socket Closed", e);
+                }
+            }
+
+            try {
+                inputStream = btSocket.getInputStream();
+            } catch (IOException e) {
+                Log.e(TAG, "Failed", e);
+            }
+            int temp;
+                try {
+                  temp = inputStream.read();
+                    AlertBox("Message", "" + (char) temp);
+                } catch (IOException e) {
+                    Log.e(TAG, "Failed", e);
+                }
+
+            bluetoothHandler.postDelayed(this, 10000);
+        }
+    };
+
+
+    public void AlertBox( String title, String message ){
+        new AlertDialog.Builder(this)
+                .setTitle( title )
+                .setMessage( message + " Press OK to exit." )
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        finish();
+                    }
+                }).show();
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
+        CheckBTState();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Define the criteria how to select the locatioin provider -> use
         // default
@@ -187,6 +282,8 @@ public class BAC extends Activity implements LocationListener {
         BAC.this.startActivity(myIntent);
     }
 
-
+    public void bluetoothClick(View view){
+        bluetoothHandler.postDelayed(bluetoothRunnable, 0);
+    }
 
 }
