@@ -246,7 +246,14 @@ public class BAC extends Activity implements LocationListener {
         BAC.this.startActivity(myIntent);
     }
 
-    public void openBT(View view) throws IOException
+    public void bluetoothConnect(View view){
+        try{
+            openBT();
+        }
+        catch(IOException e){}
+    }
+
+    public void openBT() throws IOException
     {
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
         btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);

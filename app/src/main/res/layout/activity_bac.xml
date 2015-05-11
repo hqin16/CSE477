@@ -89,7 +89,7 @@
                 android:textStyle ="bold"
                 android:id="@+id/button3"
                 android:layout_gravity="center"
-                android:onClick="openBT"
+                android:onClick="bluetoothConnect"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
 
