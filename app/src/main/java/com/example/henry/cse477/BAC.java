@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.InputStream;
@@ -46,6 +47,13 @@ public class BAC extends Activity implements LocationListener {
     private String provider;
     private double lat;
     private double lng;
+
+    Thread workerThread;
+    byte[] readBuffer;
+    int readBufferPosition;
+    int counter;
+    volatile boolean stopWorker;
+
 
     private static final int REQUEST_ENABLE_BT = 1;
     private BluetoothAdapter btAdapter = null;
@@ -108,51 +116,7 @@ public class BAC extends Activity implements LocationListener {
         }
     };
 
-    Handler bluetoothHandler = new Handler();
-    Runnable bluetoothRunnable = new Runnable() {
 
-        @Override
-        public void run() {
-            BluetoothDevice device = btAdapter.getRemoteDevice(address);
-
-            // Two things are needed to make a connection:
-            //   A MAC address, which we got above.
-            //   A Service ID or UUID.  In this case we are using the
-            //     UUID for SPP.
-            try {
-                btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);
-            } catch (IOException e) {
-                Log.e(TAG, "Unable connect", e);
-            }
-            btAdapter.cancelDiscovery();
-            // Establish the connection.  This will block until it connects.
-            try {
-                btSocket.connect();
-
-            } catch (IOException e) {
-                try {
-                    btSocket.close();
-                } catch (IOException e2) {
-                    Log.e(TAG, "Socket Closed", e);
-                }
-            }
-
-            try {
-                inputStream = btSocket.getInputStream();
-            } catch (IOException e) {
-                Log.e(TAG, "Failed", e);
-            }
-            int temp;
-                try {
-                  temp = inputStream.read();
-                    AlertBox("Message", "" + (char) temp);
-                } catch (IOException e) {
-                    Log.e(TAG, "Failed", e);
-                }
-
-            bluetoothHandler.postDelayed(this, 10000);
-        }
-    };
 
 
     public void AlertBox( String title, String message ){
@@ -282,8 +246,72 @@ public class BAC extends Activity implements LocationListener {
         BAC.this.startActivity(myIntent);
     }
 
-    public void bluetoothClick(View view){
-        bluetoothHandler.postDelayed(bluetoothRunnable, 0);
+    public void openBT(View view) throws IOException
+    {
+        BluetoothDevice device = btAdapter.getRemoteDevice(address);
+        btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);
+        btSocket.connect();
+
+        inputStream = btSocket.getInputStream();
+
+        beginListenForData();
+    }
+
+    public void beginListenForData()
+    {
+        final Handler handler = new Handler();
+        final byte delimiter = 10; //This is the ASCII code for a newline character
+
+        stopWorker = false;
+        readBufferPosition = 0;
+        readBuffer = new byte[1024];
+        workerThread = new Thread(new Runnable()
+        {
+            public void run()
+            {
+                while(!Thread.currentThread().isInterrupted() && !stopWorker)
+                {
+                    try
+                    {
+                        int bytesAvailable = inputStream.available();
+                        if(bytesAvailable > 0)
+                        {
+                            byte[] packetBytes = new byte[bytesAvailable];
+                            inputStream.read(packetBytes);
+                            for(int i=0;i<bytesAvailable;i++)
+                            {
+                                byte b = packetBytes[i];
+                                if(b == delimiter)
+                                {
+                                    byte[] encodedBytes = new byte[readBufferPosition];
+                                    System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
+                                    final String data = new String(encodedBytes, "US-ASCII");
+                                    readBufferPosition = 0;
+
+                                    handler.post(new Runnable()
+                                    {
+                                        public void run()
+                                        {
+                                            AlertBox("New", data);
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    readBuffer[readBufferPosition++] = b;
+                                }
+                            }
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        stopWorker = true;
+                    }
+                }
+            }
+        });
+
+        workerThread.start();
     }
 
 }
