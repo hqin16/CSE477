@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class progress extends Activity {
@@ -17,6 +18,21 @@ public class progress extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        String name = settings.getString("BAC", null);
+        double temp = Double.parseDouble(name);
+        double BAC = 0;
+        double voltage = (temp *5/1023);
+        if(voltage < 2.2){
+            BAC = (.0091)*voltage;
+        }else if( voltage < 3.9) {
+            BAC = .0207 * Math.pow(voltage, 2) - .0886*voltage + .1164;
+        } else{
+            BAC = .3527*voltage - 1.289;
+        }
+        BAC = Math.round(BAC * 1000.0) / 1000.0;
+        TextView detail = (TextView) findViewById(R.id.textView5);
+        detail.setText("" + BAC);
     }
 
 

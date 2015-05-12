@@ -40,6 +40,7 @@ public class BAC extends Activity implements LocationListener {
 
     public static final String PREFS_NAME = "Latitude";
     public static final String PREFS_NAME1 = "Longitude";
+    public static final String PREFS_NAME2 = "Contact Info";
 
     private static final String TAG = "LocationAddress";
     public final static String EXTRA_MESSAGE = "com.example.henry.MESSAGE";
@@ -121,14 +122,17 @@ public class BAC extends Activity implements LocationListener {
 
     public void AlertBox( String title, String message ){
         new AlertDialog.Builder(this)
-                .setTitle( title )
-                .setMessage( message )
+                .setTitle(title)
+                .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent myIntent = new Intent(BAC.this, progress.class);
-                        BAC.this.startActivity(myIntent);
-                    }
-                }).show();
+
+                    Intent myIntent = new Intent(BAC.this, progress.class);
+                    BAC.this.
+
+                    startActivity(myIntent);
+                }
+    }).show();
     }
 
 
@@ -268,7 +272,7 @@ public class BAC extends Activity implements LocationListener {
     public void beginListenForData()
     {
         final Handler handler = new Handler();
-        final byte delimiter = 10; //This is the ASCII code for a newline character
+        final byte delimiter = 35; //This is the ASCII code for a newline character
 
         stopWorker = false;
         readBufferPosition = 0;
@@ -300,7 +304,17 @@ public class BAC extends Activity implements LocationListener {
                                     {
                                         public void run()
                                         {
-                                            AlertBox("New", data);
+                                            try {
+                                                stopWorker = true;
+                                                inputStream.close();
+                                                btSocket.close();
+                                            } catch (IOException ex){
+                                            }
+                                            SharedPreferences settings = getSharedPreferences(PREFS_NAME2, 0);
+                                            SharedPreferences.Editor editor = settings.edit();
+                                            editor.putString("BAC", data);
+                                            editor.commit();
+                                            AlertBox("ALERT", "PLEASE TURN OFF DEVICE");
                                         }
                                     });
                                 }

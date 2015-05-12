@@ -84,7 +84,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:background="@drawable/roundbutton"
-                android:text="Locate"
+                android:text="GET VALUE"
                 android:textSize="30dp"
                 android:textStyle ="bold"
                 android:id="@+id/button3"
