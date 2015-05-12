@@ -30,9 +30,14 @@ public class progress extends Activity {
         } else{
             BAC = .3527*voltage - 1.289;
         }
+        double timeToSober = BAC/.015;
+        timeToSober = Math.round(timeToSober * 1000.0) / 1000.0;
         BAC = Math.round(BAC * 1000.0) / 1000.0;
         TextView detail = (TextView) findViewById(R.id.textView5);
+        TextView detail2 = (TextView) findViewById(R.id.textView4);
+        detail2.setText(timeToSober + " Hours");
         detail.setText("" + BAC);
+
     }
 
 
