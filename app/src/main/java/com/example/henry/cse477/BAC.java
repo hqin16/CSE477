@@ -122,10 +122,11 @@ public class BAC extends Activity implements LocationListener {
     public void AlertBox( String title, String message ){
         new AlertDialog.Builder(this)
                 .setTitle( title )
-                .setMessage( message + " Press OK to exit." )
+                .setMessage( message )
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        finish();
+                        Intent myIntent = new Intent(BAC.this, progress.class);
+                        BAC.this.startActivity(myIntent);
                     }
                 }).show();
     }
@@ -250,7 +251,7 @@ public class BAC extends Activity implements LocationListener {
         try{
             openBT();
         }
-        catch(IOException e){}
+        catch(IOException e){AlertBox("ERROR", "No Bluetooth Available");}
     }
 
     public void openBT() throws IOException
