@@ -255,7 +255,7 @@ public class BAC extends Activity implements LocationListener {
         try{
             openBT();
         }
-        catch(IOException e){AlertBox("ERROR", "No Bluetooth Available");}
+        catch(IOException e){AlertBox("ERROR", "Please Try Again");}
     }
 
     public void openBT() throws IOException
@@ -281,6 +281,7 @@ public class BAC extends Activity implements LocationListener {
         {
             public void run()
             {
+                int count = 0;
                 while(!Thread.currentThread().isInterrupted() && !stopWorker)
                 {
                     try
@@ -293,32 +294,34 @@ public class BAC extends Activity implements LocationListener {
                             for(int i=0;i<bytesAvailable;i++)
                             {
                                 byte b = packetBytes[i];
-                                if(b == delimiter)
-                                {
-                                    byte[] encodedBytes = new byte[readBufferPosition];
-                                    System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
-                                    final String data = new String(encodedBytes, "US-ASCII");
-                                    readBufferPosition = 0;
+                                if(b == delimiter) {
+                                    if(count == 1){
+                                        byte[] encodedBytes = new byte[readBufferPosition];
+                                        System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
+                                        final String data = new String(encodedBytes, "US-ASCII");
+                                        readBufferPosition = 0;
 
-                                    handler.post(new Runnable()
-                                    {
-                                        public void run()
+                                        handler.post(new Runnable()
                                         {
-                                            try {
-                                                stopWorker = true;
-                                                inputStream.close();
-                                                btSocket.close();
-                                            } catch (IOException ex){
+                                            public void run()
+                                            {
+                                                try {
+                                                    stopWorker = true;
+                                                    inputStream.close();
+                                                    btSocket.close();
+                                                } catch (IOException ex){
+                                                }
+                                                SharedPreferences settings = getSharedPreferences(PREFS_NAME2, 0);
+                                                SharedPreferences.Editor editor = settings.edit();
+                                                editor.putString("BAC", data);
+                                                editor.commit();
+                                                AlertBox("ALERT", "PLEASE TURN OFF DEVICE");
                                             }
-                                            SharedPreferences settings = getSharedPreferences(PREFS_NAME2, 0);
-                                            SharedPreferences.Editor editor = settings.edit();
-                                            editor.putString("BAC", data);
-                                            editor.commit();
-                                            AlertBox("ALERT", "PLEASE TURN OFF DEVICE");
-                                        }
-                                    });
+                                        });
+                                    }
+                                    count++;
                                 }
-                                else
+                                else if(count > 0)
                                 {
                                     readBuffer[readBufferPosition++] = b;
                                 }
