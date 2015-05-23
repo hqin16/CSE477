@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -24,6 +25,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -139,6 +141,10 @@ public class BAC extends Activity implements LocationListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_bac);
+        TextView TopLogo=(TextView)findViewById(R.id.TopLog);
+        Typeface face = Typeface.createFromAsset(getAssets(),"CP2.otf");
+        TopLogo.setTypeface(face);
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         CheckBTState();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -151,7 +157,7 @@ public class BAC extends Activity implements LocationListener {
             onLocationChanged(location);
         }
         timerHandler.postDelayed(timerRunnable, 0);
-        setContentView(R.layout.activity_bac);
+
     }
 
 
