@@ -3,12 +3,15 @@ package com.example.henry.cse477;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 public class progress extends Activity {
@@ -37,7 +40,23 @@ public class progress extends Activity {
         TextView detail2 = (TextView) findViewById(R.id.textView4);
         detail2.setText(timeToSober + " Hours");
         detail.setText("" + BAC);
-
+        TextView TopLogo=(TextView)findViewById(R.id.TopLog);
+        TextView one = (TextView) findViewById(R.id.textView);
+        TextView two = (TextView) findViewById(R.id.textView5);
+        TextView three = (TextView) findViewById(R.id.textView2);
+        TextView four = (TextView) findViewById(R.id.textView4);
+        TextView five = (TextView) findViewById(R.id.textView3);
+        TextView nine = (TextView) findViewById(R.id.textView9);
+        TextView ten = (TextView) findViewById(R.id.textView10);
+        Typeface face = Typeface.createFromAsset(getAssets(),"CP2.otf");
+        TopLogo.setTypeface(face);
+        one.setTypeface(face);
+        two.setTypeface(face);
+        three.setTypeface(face);
+        four.setTypeface(face);
+        five.setTypeface(face);
+        ten.setTypeface(face);
+        nine.setTypeface(face);
     }
 
 
