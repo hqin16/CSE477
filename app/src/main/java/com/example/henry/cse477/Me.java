@@ -3,6 +3,7 @@ package com.example.henry.cse477;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,20 @@ public class Me extends Activity {
         String name = settings.getString("Name", null);
         TextView detail = (TextView) findViewById(R.id.textView5);
         detail.setText(name);
+        TextView one = (TextView) findViewById(R.id.textView);
+        TextView two = (TextView) findViewById(R.id.textView2);
+        TextView three = (TextView) findViewById(R.id.textView3);
+        TextView four = (TextView) findViewById(R.id.textView4);
+        TextView five = (TextView) findViewById(R.id.TopLog);
+        TextView six = (TextView) findViewById(R.id.button6);
+        Typeface face = Typeface.createFromAsset(getAssets(),"CP2.otf");
+        detail.setTypeface(face);
+        one.setTypeface(face);
+        two.setTypeface(face);
+        three.setTypeface(face);
+        four.setTypeface(face);
+        five.setTypeface(face);
+        six.setTypeface(face);
     }
 
 

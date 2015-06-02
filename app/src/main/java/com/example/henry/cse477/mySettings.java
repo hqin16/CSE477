@@ -2,11 +2,13 @@ package com.example.henry.cse477;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class mySettings extends Activity {
@@ -15,6 +17,9 @@ public class mySettings extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_settings);
+        TextView five = (TextView) findViewById(R.id.TopLog);
+        Typeface face = Typeface.createFromAsset(getAssets(),"CP2.otf");
+        five.setTypeface(face);
     }
 
 
@@ -57,6 +62,10 @@ public class mySettings extends Activity {
 
     public void setTime(View view){
         Intent myIntent = new Intent(mySettings.this, setTime.class);
+        mySettings.this.startActivity(myIntent);
+    }
+    public void setUUID(View view){
+        Intent myIntent = new Intent(mySettings.this, setUUID.class);
         mySettings.this.startActivity(myIntent);
     }
 

@@ -20,18 +20,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Add Number:"
+                    android:text="Set UUID:"
                     android:textColor="#FFFFFF"
                     android:textSize="28sp"
                     android:textStyle ="bold"
                     android:id="@+id/textView6"
-                    android:layout_below="@+id/TopLog"
+                    android:layout_marginTop="124dp"
+                    android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="45dp" />
+                    android:layout_alignParentStart="true" />
 
                 <Button
                     android:layout_width="wrap_content"
@@ -41,7 +42,8 @@
                     android:textColor="#FFFFFF"
                     android:onClick="save"
                     android:id="@+id/button11"
-                    android:layout_below="@+id/editText5"
+                    android:layout_marginTop="71dp"
+                    android:layout_below="@+id/textView6"
                     android:layout_toLeftOf="@+id/button13"
                     android:layout_toStartOf="@+id/button13" />
 
@@ -50,48 +52,52 @@
                     android:layout_height="wrap_content"
                     android:text="Cancel"
                     android:onClick="cancel"
-                    android:textColor="#FFFFFF"
                     android:background="#7F81B1"
-                    android:id="@+id/button13"
-                    android:layout_below="@+id/editText5"
-                    android:layout_toRightOf="@+id/textView6"
-                    android:layout_toEndOf="@+id/textView6" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="UW: B.A.C"
-                    android:id="@+id/TopLog"
-                    android:gravity="center"
-                    android:textSize="50sp"
-                    android:textStyle ="bold"
                     android:textColor="#FFFFFF"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/uwlogo"
-                    android:layout_alignBottom="@+id/uwlogo" />
+                    android:id="@+id/button13"
+                    android:layout_alignTop="@+id/button11"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="103dp"
+                    android:layout_marginEnd="103dp" />
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:id="@+id/uwlogo"
-                    android:background="@drawable/uwlogo"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignLeft="@+id/textView6"
-                    android:layout_alignStart="@+id/textView6" />
 
                 <EditText
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:id="@+id/editText5"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText6"
                     android:textColor="#FFFFFF"
-                    android:layout_below="@+id/textView6"
-                    android:layout_toRightOf="@+id/uwlogo"
+                    android:layout_above="@+id/button13"
+                    android:layout_alignLeft="@+id/button11"
+                    android:layout_alignStart="@+id/button11"
                     android:layout_alignRight="@+id/button13"
-                    android:layout_alignEnd="@+id/button13" />
+                    android:layout_alignEnd="@+id/button13"
+                    android:layout_below="@+id/textView6" />
 
 
             </RelativeLayout>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/uwlogo"
+                android:background="@drawable/uwlogo"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UW: B.A.C"
+                android:textColor="#FFFFFF"
+                android:id="@+id/TopLog"
+                android:gravity="center"
+                android:textSize="50sp"
+                android:textStyle ="bold"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/uwlogo"
+                android:layout_alignBottom="@+id/uwlogo" />
 
         </RelativeLayout>
 
@@ -100,4 +106,3 @@
 
 
 </LinearLayout>
-

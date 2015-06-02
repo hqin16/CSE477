@@ -57,4 +57,5 @@
     <string name="title_activity_my_settings">mySettings</string>
     <string name="title_activity_my_address">myAddress</string>
     <string name="title_activity_initializations">Initializations</string>
+    <string name="title_activity_set_uuid">setUUID</string>
 </resources>

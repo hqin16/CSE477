@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="#FFFFFF">
+    android:background="#191C59">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -26,7 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Enter Address:"
-                    android:textColor="#000000"
+                    android:textColor="#FFFFFF"
                     android:textSize="28sp"
                     android:textStyle ="bold"
                     android:id="@+id/textView6"
@@ -35,31 +35,35 @@
                     android:layout_toLeftOf="@+id/button4"
                     android:layout_toStartOf="@+id/button4" />
 
-                <ImageButton
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Save"
                     android:onClick="save"
-                    android:background="@drawable/submitbutton"
+                    android:background="#7F81B1"
+                    android:textColor="#FFFFFF"
                     android:id="@+id/button11"
                     android:layout_below="@+id/editText"
-                    android:layout_toLeftOf="@+id/button13"
-                    android:layout_toStartOf="@+id/button13" />
+                    android:layout_alignLeft="@+id/editText"
+                    android:layout_alignStart="@+id/editText" />
 
-                <ImageButton
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/cancelbutton"
+                    android:background="#7F81B1"
                     android:text="Cancel"
+                    android:onClick="cancel"
+                    android:textColor="#FFFFFF"
                     android:id="@+id/button13"
-                    android:layout_below="@+id/editText"
-                    android:layout_alignRight="@+id/editText"
-                    android:layout_alignEnd="@+id/editText" />
+                    android:layout_alignTop="@+id/button11"
+                    android:layout_toRightOf="@+id/button11"
+                    android:layout_toEndOf="@+id/button11" />
 
                 <EditText
                     android:layout_width="250dp"
                     android:layout_height="100dp"
                     android:id="@+id/editText"
+                    android:textColor="#FFFFFF"
                     android:layout_below="@+id/textView6"
                     android:layout_centerHorizontal="true" />
 
@@ -83,7 +87,7 @@
                 android:gravity="center"
                 android:textSize="50sp"
                 android:textStyle ="bold"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/uwlogo"
                 android:layout_alignBottom="@+id/uwlogo" />

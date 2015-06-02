@@ -2,10 +2,12 @@ package com.example.henry.cse477;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class setTime extends Activity {
@@ -14,6 +16,11 @@ public class setTime extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_time);
+        TextView five = (TextView) findViewById(R.id.TopLog);
+        TextView two = (TextView) findViewById(R.id.textView6);
+        Typeface face = Typeface.createFromAsset(getAssets(),"CP2.otf");
+        five.setTypeface(face);
+        two.setTypeface(face);
     }
 
 
@@ -40,6 +47,11 @@ public class setTime extends Activity {
     }
 
     public void save(View view){
+        Intent myIntent = new Intent(setTime.this, mySettings.class);
+        setTime.this.startActivity(myIntent);
+    }
+
+    public void cancel(View view){
         Intent myIntent = new Intent(setTime.this, mySettings.class);
         setTime.this.startActivity(myIntent);
     }

@@ -19,6 +19,8 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -129,7 +131,7 @@ public class BAC extends Activity implements LocationListener {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                    Intent myIntent = new Intent(BAC.this, progress.class);
+                    Intent myIntent = new Intent(BAC.this, BAC.class);
                     BAC.this.
 
                     startActivity(myIntent);
@@ -142,6 +144,8 @@ public class BAC extends Activity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bac);
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME2, 0);
+        address = settings.getString("UUID", "00:06:66:6D:96:96");;
         TextView TopLogo=(TextView)findViewById(R.id.TopLog);
         Typeface face = Typeface.createFromAsset(getAssets(),"CP2.otf");
         TopLogo.setTypeface(face);
@@ -181,16 +185,19 @@ public class BAC extends Activity implements LocationListener {
        // notification is selected
        Intent intent = new Intent(this, LocationDisplay.class);
        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
        // Build notification
        // Actions are just fake
        Notification noti = new Notification.Builder(this)
                .setContentTitle("ALERT")
                .setContentText("TIME TO TEST").setSmallIcon(R.drawable.uwlogo)
+               .setSound(sound)
                .setContentIntent(pIntent).build();
 
        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
        // hide the notification after its selected
        noti.vibrate = new long[]{100, 200, 100, 500};
+
        noti.flags |= Notification.FLAG_AUTO_CANCEL;
 
        notificationManager.notify(0, noti);
@@ -227,15 +234,13 @@ public class BAC extends Activity implements LocationListener {
 
     @Override
     public void onProviderEnabled(String provider) {
-        Toast.makeText(this, "Enabled new provider " + provider,
-                Toast.LENGTH_SHORT).show();
+
 
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        Toast.makeText(this, "Disabled provider " + provider,
-                Toast.LENGTH_SHORT).show();
+
     }
 
     public void Located(View view){

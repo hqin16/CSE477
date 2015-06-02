@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +23,7 @@ public class progress extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String name = settings.getString("BAC", null);
+        String name = settings.getString("BAC", "0");
         double temp = Double.parseDouble(name);
         double BAC = 0;
         double voltage = (temp *5/1023);
@@ -34,6 +35,10 @@ public class progress extends Activity {
             BAC = .3527*voltage - 1.289;
         }
         double timeToSober = BAC/.015;
+        if(BAC < .01){
+            timeToSober = 0;
+            BAC = 0;
+        }
         timeToSober = Math.round(timeToSober * 1000.0) / 1000.0;
         BAC = Math.round(BAC * 1000.0) / 1000.0;
         TextView detail = (TextView) findViewById(R.id.textView5);
@@ -103,5 +108,14 @@ public class progress extends Activity {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + tel));
         startActivity(callIntent);
+    }
+
+    public void text(View view)
+    {
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        String tel = settings.getString("Contact", null);
+        String messageToSend = "I am at University of Washington Please Come Get me";
+
+        SmsManager.getDefault().sendTextMessage(tel, null, messageToSend, null,null);
     }
 }

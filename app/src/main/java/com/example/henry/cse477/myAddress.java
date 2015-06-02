@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,6 +31,11 @@ public class myAddress extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_address);
+        TextView five = (TextView) findViewById(R.id.TopLog);
+        TextView two = (TextView) findViewById(R.id.textView6);
+        Typeface face = Typeface.createFromAsset(getAssets(),"CP2.otf");
+        five.setTypeface(face);
+        two.setTypeface(face);
     }
 
 
@@ -110,5 +117,10 @@ public class myAddress extends Activity {
             Log.e(TAG, "Unable connect to Geocoder", e);
         }
         return longitude;
+    }
+
+    public void cancel(View view) {
+        Intent myIntent = new Intent(myAddress.this, mySettings.class);
+        myAddress.this.startActivity(myIntent);
     }
 }
