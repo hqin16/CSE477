@@ -117,26 +117,41 @@ public class BAC extends Activity implements LocationListener {
                 }
             }
 
-            timerHandler.postDelayed(this, 10000);
+            timerHandler.postDelayed(this, 100000);
         }
     };
 
 
 
 
-    public void AlertBox( String title, String message ){
+    public void AlertBox1( String title, String message ){
         new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                    Intent myIntent = new Intent(BAC.this, BAC.class);
+                    Intent myIntent = new Intent(BAC.this, progress.class);
                     BAC.this.
 
                     startActivity(myIntent);
                 }
     }).show();
+    }
+
+    public void AlertBox2( String title, String message ){
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        Intent myIntent = new Intent(BAC.this, BAC.class);
+                        BAC.this.
+
+                                startActivity(myIntent);
+                    }
+                }).show();
     }
 
 
@@ -266,7 +281,7 @@ public class BAC extends Activity implements LocationListener {
         try{
             openBT();
         }
-        catch(IOException e){AlertBox("ERROR", "Please Try Again");}
+        catch(IOException e){AlertBox2("ERROR", "Please Try Again");}
     }
 
     public void openBT() throws IOException
@@ -326,7 +341,7 @@ public class BAC extends Activity implements LocationListener {
                                                 SharedPreferences.Editor editor = settings.edit();
                                                 editor.putString("BAC", data);
                                                 editor.commit();
-                                                AlertBox("ALERT", "PLEASE TURN OFF DEVICE");
+                                                AlertBox1("B.A.C RECEIVED", "PLEASE TURN OFF DEVICE");
                                             }
                                         });
                                     }
